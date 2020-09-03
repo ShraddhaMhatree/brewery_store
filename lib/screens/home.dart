@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:brewery_store/bloc/home_bloc.dart';
 import 'package:brewery_store/models/brewery.dart';
@@ -10,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Brewery> breweryList = [];
+  List<Brewery> breweryList = List();
   final HomeBloc homeBloc = HomeBloc();
 
   @override
@@ -36,12 +35,11 @@ class _HomePageState extends State<HomePage> {
         // child: _listViewBuilder(breweryList),
         child: StreamBuilder(
           stream: homeBloc.breweryList,
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            String data = snapshot.data;
-            if (data != null && data.isNotEmpty) {
-              breweryList = (json.decode(data) as List)
-                  .map((i) => Brewery.fromJson(i))
-                  .toList();
+          builder:
+              (BuildContext context, AsyncSnapshot<List<Brewery>> snapshot) {
+            List<Brewery>  data = snapshot.data;
+            if (data != null ) {
+              breweryList = data;
             }
             return _listViewBuilder(breweryList);
           },
