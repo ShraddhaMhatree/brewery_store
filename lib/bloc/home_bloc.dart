@@ -18,15 +18,12 @@ class HomeBloc {
     String val = '';
     if (kIsWeb) {
       val = WebStorage.instance.getData('data');
-      print('bloc $val');
     }
     _controller.sink.add(val);
   }
 
   insertList() async {
-    print('bloc b4 insert');
     await _repo.getListFromServer();
-    print('bloc after insert');
     getList();
   }
 
