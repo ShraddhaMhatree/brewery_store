@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:brewery_store/bloc/home_bloc.dart';
 import 'package:brewery_store/models/brewery.dart';
-import 'package:brewery_store/repository/brewery_repository.dart';
-import 'package:brewery_store/repository/home_repository.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -69,6 +67,14 @@ class _HomePageState extends State<HomePage> {
 
   ListTile _listItemBuilder(List<Brewery> breweryList, int i) => ListTile(
         title: Text(breweryList[i].name),
-        subtitle: Text(breweryList[i].breweryType),
+        subtitle: Text(
+            '${breweryList[i].street}, ${breweryList[i].city}, ${breweryList[i].state}, ${breweryList[i].postalCode}, ${breweryList[i].country}'),
+        leading: CircleAvatar(
+          child: Padding(
+              padding: EdgeInsets.all(6),
+              child: FittedBox(
+                  child: Text(breweryList[i].breweryType.toLowerCase()))),
+          backgroundColor: Colors.amber,
+        ),
       );
 }

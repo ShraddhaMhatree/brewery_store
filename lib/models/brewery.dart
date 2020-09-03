@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class Brewery {
   int id;
@@ -64,9 +63,4 @@ class Brewery {
     return data;
   }
 
-  List<Brewery> employeeFromJson(String str) =>
-      List<Brewery>.from(json.decode(str).map((x) => Brewery.fromJson(x)));
-
-  String employeeToJson(List<Brewery> data) =>
-      json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 }
