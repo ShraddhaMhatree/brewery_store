@@ -84,14 +84,20 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
-              child: FlatButton.icon(
+              child:
+        breweryList[i].phone.isNotEmpty ?
+              FlatButton.icon(
                   onPressed: null,
                   icon: Icon(Icons.phone,
                       size: 15, color: Colors.lightBlueAccent),
                   label: Text(
                     breweryList[i].phone,
                     style: TextStyle(color: Colors.lightBlueAccent),
-                  )),
+                  ))
+            :Container(
+            margin: EdgeInsets.only(right: 15),
+            child: Text('----',style: TextStyle(color: Colors.lightBlueAccent)))
+
             ),
             Expanded(
                 child: Container(
