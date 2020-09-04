@@ -53,8 +53,12 @@ class _HomePageState extends State<HomePage> {
     return breweryList.length > 0
         ? ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            separatorBuilder: (BuildContext context, int index) =>
-                Container( color: Colors.white, child: const Divider( color: Colors.grey, ), ),
+            separatorBuilder: (BuildContext context, int index) => Container(
+              color: Colors.white,
+              child: const Divider(
+                color: Colors.grey,
+              ),
+            ),
             //     Divider(
             //   height: 1,
             //   color: Colors.grey.shade800,
@@ -84,21 +88,19 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
-              child:
-        breweryList[i].phone.isNotEmpty ?
-              FlatButton.icon(
-                  onPressed: null,
-                  icon: Icon(Icons.phone,
-                      size: 15, color: Colors.lightBlueAccent),
-                  label: Text(
-                    breweryList[i].phone,
-                    style: TextStyle(color: Colors.lightBlueAccent),
-                  ))
-            :Container(
-            margin: EdgeInsets.only(right: 15),
-            child: Text('----',style: TextStyle(color: Colors.lightBlueAccent)))
-
-            ),
+                child: breweryList[i].phone.isNotEmpty
+                    ? FlatButton.icon(
+                        onPressed: null,
+                        icon: Icon(Icons.phone,
+                            size: 15, color: Colors.lightBlueAccent),
+                        label: Text(
+                          breweryList[i].phone,
+                          style: TextStyle(color: Colors.lightBlueAccent),
+                        ))
+                    : Container(
+                        margin: EdgeInsets.only(right: 15),
+                        child: Text('----',
+                            style: TextStyle(color: Colors.lightBlueAccent)))),
             Expanded(
                 child: Container(
               margin: EdgeInsets.only(right: 15),
