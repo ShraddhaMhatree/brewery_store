@@ -1,4 +1,3 @@
-
 import 'package:brewery_store/bloc/home_bloc.dart';
 import 'package:brewery_store/models/brewery.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +27,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Home Page"),
+        centerTitle: true,
       ),
       body: SafeArea(
         // child: _listViewBuilder(breweryList),
@@ -37,8 +38,8 @@ class _HomePageState extends State<HomePage> {
           stream: homeBloc.breweryList,
           builder:
               (BuildContext context, AsyncSnapshot<List<Brewery>> snapshot) {
-            List<Brewery>  data = snapshot.data;
-            if (data != null ) {
+            List<Brewery> data = snapshot.data;
+            if (data != null) {
               breweryList = data;
             }
             return _listViewBuilder(breweryList);
@@ -52,12 +53,17 @@ class _HomePageState extends State<HomePage> {
     return breweryList.length > 0
         ? ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            separatorBuilder: (BuildContext context, int index) => Divider(
-                  height: 1,
-                  color: Colors.grey.shade800,
-                ),
+            separatorBuilder: (BuildContext context, int index) =>
+                Container( color: Colors.white, child: const Divider( color: Colors.grey, ), ),
+            //     Divider(
+            //   height: 1,
+            //   color: Colors.grey.shade800,
+            // ),
             itemCount: breweryList.length,
-            itemBuilder: (ctx, i) => _listItemBuilder(breweryList, i))
+            itemBuilder: (ctx, i) => Container(
+                margin: EdgeInsets.all(8),
+                child: _listItemBuilder(breweryList, i)),
+          )
         : Center(
             child: CircularProgressIndicator(),
           );
@@ -73,6 +79,31 @@ class _HomePageState extends State<HomePage> {
               child: FittedBox(
                   child: Text(breweryList[i].breweryType.toLowerCase()))),
           backgroundColor: Colors.amber,
+        ),
+        trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Expanded(
+              child: FlatButton.icon(
+                  onPressed: null,
+                  icon: Icon(Icons.phone,
+                      size: 15, color: Colors.lightBlueAccent),
+                  label: Text(
+                    breweryList[i].phone,
+                    style: TextStyle(color: Colors.lightBlueAccent),
+                  )),
+            ),
+            Expanded(
+                child: Container(
+              margin: EdgeInsets.only(right: 15),
+              child: Text(
+                breweryList[i].websiteUrl,
+                style: TextStyle(
+                    color: Colors.lightBlueAccent,
+                    decoration: TextDecoration.underline),
+              ),
+            ))
+          ],
         ),
       );
 }
