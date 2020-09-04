@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: Text("Breweries"),
         centerTitle: true,
       ),
       body: SafeArea(
